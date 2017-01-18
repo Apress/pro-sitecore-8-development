@@ -1,0 +1,29 @@
+﻿@using Sitecore.Mvc
+@using SitecoreDev.Foundation.SitecoreExtensions.Extensions
+@* @using Sitecore.Mvc.Analytics.Extensions *@
+@{
+   Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <title>@Html.Sitecore().Field("title", new { DisableWebEdit = true })</title>
+   @* @Html.Sitecore().VisitorIdentification() *@
+
+  <script type="text/javascript" src="~/Scripts/jquery-1.12.4.js"></script>
+   <script type="text/javascript" src="~/Scripts/jquery-ui-1.12.0.js"></script>
+   <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+  <link rel="stylesheet" href="~/Content/bootstrap.css" />
+  <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="~/Content/foundation.styling.css" />
+   <link rel="stylesheet" href="~/Content/sitecoredev.website.css" />
+</head>
+<body class="@(Sitecore.Context.PageMode.IsExperienceEditor ? "edit-mode" : string.Empty)" style="padding-left:20px;">
+   <h1>@Html.Sitecore().Field("title")</h1>
+   <div>
+      @Html.Sitecore().Placeholder("main")
+   </div>
+   
+  @Html.RenderResources("js")
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@model SitecoreDev.Feature.Search.ViewModels.BlogSearchViewModel
+
+<div>
+  <form id="blog-search">
+      <div class="form-group">
+        <label class="sr-only" for="search-field">Search:</label>
+        <input id="search-field" type="text" class="form-control" style="width:300px;" placeholder="Search Text">
+      </div>
+
+      <button type="submit" class="btn btn-primary ">Search</button>
+    </form>
+
+    <div class="search-results">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+      'use strict';
+      (window.BlogSearch = {
+        initialize: function () {
+          console.log('initializing blogsearch');
+          var _this = this;
+
+          $('#blog-search').submit(function (event) {
+            console.log('submitting');
+            _this.searchBlog();
+            event.preventDefault();
+          });
+
+          $('#search-field').autocomplete({
+            source: function (request, response) {
+              $.ajax({
+                url: "/search/getsuggestions",
+                type: "POST",
+                dataType: "json",
+                data: {
+                  searchTerm: request.term
+                },
+                success: function (data) {
+                  response(data.length === 1 && data[0].length === 0 ? [] : data);
+                }
+              });
+            },
+          });
+        },
+
+        searchBlog: function () {
+          var searchText = $('#search-field').val();
+
+          $.ajax({
+            url: "/search/submitsearch",
+            type: "POST",
+            data: {
+              SearchTerm: searchText
+            },
+            context: this,
+            success: function (html) {
+              $('.search-results').html(html);
+            },
+            error: function (data) {
+              $('.search-results').html('');
+            }
+          });
+        }
+      });
+      $(function () {
+        BlogSearch.initialize();
+      });
+
+    })(jQuery);
+
+  </script>

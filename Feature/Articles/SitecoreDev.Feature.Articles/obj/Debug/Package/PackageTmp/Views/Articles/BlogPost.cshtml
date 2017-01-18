@@ -1,0 +1,30 @@
+﻿@model SitecoreDev.Feature.Articles.ViewModels.BlogPostViewModel
+
+<div>
+
+   @if (Model.HasTitle)
+   {
+      <h3>@Model.Title</h3>
+   }
+   
+   <p>@Model.Body</p>
+
+   <h4>Comments</h4>
+   @if (Model.HasComments)
+   {
+      foreach(var comment in Model.Comments)
+      {
+         <div>
+            <div>@comment.Name</div>
+            <div>@comment.DatePosted</div>
+            <div>@comment.Comment</div>
+         </div>
+         <br />
+      }
+   }
+   else
+   {
+      <div>No Comments</div>
+   }
+
+</div>

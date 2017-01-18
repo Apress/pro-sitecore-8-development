@@ -1,0 +1,24 @@
+﻿@model SitecoreDev.Feature.Search.ViewModels.SearchResultsViewModel
+
+<div class="result-list">
+  @foreach (var result in Model.Results)
+  {
+    <div class="blog-post">
+      <a href="@result.Url" class="blog-title">@result.Title</a>
+      <div>@result.Body</div>
+      <div class="blog-categories">Categories: @result.CategoryList</div>
+    </div>
+  }
+</div>
+
+<div class="categories">
+  <div class="category-title">Categories</div>
+  <div class="facet-list">
+    @foreach (var facet in Model.Facets)
+    {
+      <div class="facet-item">
+        <span class="facet-name">@facet.Name (@facet.Count)</span>
+      </div>
+    }
+  </div>
+</div>

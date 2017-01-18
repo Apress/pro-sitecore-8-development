@@ -1,0 +1,53 @@
+﻿@model SitecoreDev.Feature.Media.ViewModels.HeroSliderViewModel
+@using SitecoreDev.Foundation.SitecoreExtensions.Extensions
+
+@if (Model.HasImages)
+{
+  if (Model.IsInExperienceEditorMode)
+  {
+    <div>
+      @foreach (var image in Model.HeroImages)
+      {
+        <div class="item imageContainer">
+          @image.Image
+        </div>
+      }
+    </div>
+      <div style="clear:both;">
+        <!-- This button calls the webedit:new command to add a new Item to the content tree -->
+        <a href="#" class="btn btn-default" onclick="javascript:Sitecore.PageModes.PageEditor.postRequest('webedit:new(id=@(Model.ParentGuid))')">Add new image</a>
+      </div>
+  }
+  else
+  {
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        @for (int i = 0; i < Model.ImageCount; i++)
+        {
+          <li data-target="#myCarousel" data-slide-to="@i" class="@(Model.HeroImages[i].IsActive ? "active" : "")"></li>
+        }
+      </ol>
+
+      <div class="carousel-inner" role="listbox">
+        @foreach (var image in Model.HeroImages)
+        {
+          <div class="item @(image.IsActive ? "active" : "")">
+            @image.Image
+          </div>
+        }
+      </div>
+    </div>
+
+    if (Model.IsSliderIntervalSet)
+    {
+      @Html.Resource(
+      @<script type="text/javascript">
+        $(document).ready(function () {
+          $("#myCarousel").carousel({
+            interval: @(Model.SlideInterval),
+          });
+        });
+      </script>, "js")
+    }
+  }
+}

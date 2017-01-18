@@ -1,0 +1,24 @@
+﻿body.edit-mode .component-wrapper {
+  border: 1px solid #9dd;
+  border-top: none;
+  box-sizing: border-box;
+  margin: 10px;
+  overflow: hidden; }
+  body.edit-mode .component-wrapper span.wrapper-header {
+    display: block;
+    color: #111;
+    background-color: #9dd;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    }
+  body.edit-mode .component-wrapper .component-content {
+    padding: 10px;
+    min-height: 50px; }
+    body.edit-mode .component-wrapper .component-content .component-wrapper {
+      margin: 10px 0; }
+ 
+body.edit-mode .mdl-container .mdl-locations-container .scEmptyImage {
+  display: none; }

@@ -1,0 +1,13 @@
+﻿@using Sitecore.Mvc
+@using SitecoreDev.Foundation.SitecoreExtensions.Extensions
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-9">
+         @Html.Sitecore().DynamicPlaceholder("wide-column-1")
+      </div>
+      <div class="col-md-3">
+         @Html.Sitecore().DynamicPlaceholder("narrow-column-1")
+      </div>
+   </div>
+</div>
