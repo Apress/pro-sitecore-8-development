@@ -1,6 +1,6 @@
 #Apress Source Code
 
-This repository accompanies [*Professional Sitecore 8 Development*](http://www.apress.com/9781484222911) by Wicklund, Phil (Apress, 2016).
+This repository accompanies [*Professional Sitecore 8 Development*](http://www.apress.com/9781484222911) by Phillip Wicklund (Apress, 2016).
 
 ![Cover image](9781484222911.jpg)
 
